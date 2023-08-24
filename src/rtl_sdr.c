@@ -161,49 +161,49 @@ int main(int argc, char **argv)
 
 	while ((opt = getopt(argc, argv, "d:f:g:s:w:b:n:p:O:SNHv")) != -1) {
 		switch (opt) {
-		case 'd':
-			dev_index = verbose_device_search(optarg);
-			dev_given = 1;
-			break;
-		case 'f':
-			frequency = (uint64_t)atofs(optarg);
-			break;
-		case 'g':
-			gain = (int)(atof(optarg) * 10); /* tenths of a dB */
-			break;
-		case 's':
-			samp_rate = (uint32_t)atofs(optarg);
-			break;
-		case 'w':
-			bandwidth = (uint32_t)atofs(optarg);
-			break;
-		case 'p':
-			ppm_error = atoi(optarg);
-			break;
-		case 'O':
-			rtlOpts = optarg;
-			break;
-		case 'b':
-			out_block_size = (uint32_t)atof(optarg);
-			break;
-		case 'n':
-			iq_frames_to_read = (uint32_t)atof(optarg);
-			break;
-		case 'S':
-			sync_mode = 1;
-			break;
-		case 'N':
-			dithering = 0;
-			break;
-		case 'H':
-			writeWav = 1;
-			break;
-		case 'v':
-			++verbosity;
-			break;
-		default:
-			usage();
-			break;
+            case 'b':
+                out_block_size = (uint32_t)atof(optarg);
+                break;
+            case 'd':
+                dev_index = verbose_device_search(optarg);
+                dev_given = 1;
+                break;
+            case 'f':
+                frequency = (uint64_t)atofs(optarg);
+                break;
+            case 'g':
+                gain = (int)(atof(optarg) * 10); /* tenths of a dB */
+                break;
+            case 'H':
+                writeWav = 1;
+                break;
+            case 'n':
+                iq_frames_to_read = (uint32_t)atof(optarg);
+                break;
+            case 'N':
+                dithering = 0;
+                break;
+            case 'O':
+                rtlOpts = optarg;
+                break;
+            case 'p':
+                ppm_error = atoi(optarg);
+                break;
+            case 's':
+                samp_rate = (uint32_t)atofs(optarg);
+                break;
+            case 'S':
+                sync_mode = 1;
+                break;
+            case 'v':
+                ++verbosity;
+                break;
+            case 'w':
+                bandwidth = (uint32_t)atofs(optarg);
+                break;
+            default:
+                usage();
+                break;
 		}
 	}
 
