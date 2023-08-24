@@ -1783,12 +1783,19 @@ int r82xx_set_bandwidth(struct r82xx_priv *priv, int bw, uint32_t rate, uint32_t
 		if (apply)
 			priv->int_freq = 4570000;
 	} else if (bw > 4500000) {
-		// BW: 6 MHz
-		*applied_bw = 6000000;
-		reg_0a = 0x10;
-		reg_0b = 0x6b;
-		if (apply)
-			priv->int_freq = 3570000;
+        // BW: 6 MHz
+        *applied_bw = 6000000;
+        reg_0a = 0x10;
+        reg_0b = 0x6b;
+        if (apply)
+            priv->int_freq = 3570000;
+//    }
+//    else if (12500 == bw) {
+//        *applied_bw = 12500;
+//        reg_0a = 0x10;
+//        reg_0b = 0x6b;
+//        if (apply)
+//            priv->int_freq = 1012500;
 	} else {
 		for(i=0; i < r82xx_bw_tablen-1; ++i) {
 			const int bwnext = IFi[i+1].bw * 1000 + ( IFi[i+1].sharpCorner == 2 ? 400 : 0 );
@@ -1802,7 +1809,7 @@ int r82xx_set_bandwidth(struct r82xx_priv *priv, int bw, uint32_t rate, uint32_t
 		reg_0b = IFi[i].reg11;
 		reg_1e = IFi[i].reg30Hi;
 		real_bw = IFi[i].bw * 1000;   /* kHz part */
-#if 0
+#if 1
 		fprintf(stderr, "%s: selected idx %d: R10 = %02X, R11 = %02X, Bw %d, IF %d\n"
 			, __FUNCTION__, i
 			, (unsigned)reg_0a

@@ -97,7 +97,8 @@ typedef int socklen_t;
 #endif
 #include <signal.h>
 
-#define LOG_API_CALLS			0
+#define LOG_API_CALLS			1
+#define LOG_API_CALLS_TRACE     0
 #define LOG_API_SET_FREQ		0
 #define PRINT_UDP_SRV_MSGS		0
 
@@ -4421,8 +4422,10 @@ int rtlsdr_set_opt_string(rtlsdr_dev_t *dev, const char *opts, int verbose)
 	while (optPart)
 	{
 		int ret = 0;
-		//if (verbose || dev->verbose)
-		//	fprintf(stderr, "\nrtlsdr_set_opt_string(): parsing option '%s'\n", optPart);
+#ifdef LOG_API_CALLS_TRACE
+		if (verbose || dev->verbose)
+			fprintf(stderr, "\nrtlsdr_set_opt_string(): parsing option '%s'\n", optPart);
+#endif
 		if (!strcmp(optPart, "verbose") || !strcmp(optPart, "v")) {
 			fprintf(stderr, "\nrtlsdr_set_opt_string(): parsed option verbose\n");
 			verbose = ++dev->verbose;
