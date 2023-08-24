@@ -1789,13 +1789,6 @@ int r82xx_set_bandwidth(struct r82xx_priv *priv, int bw, uint32_t rate, uint32_t
         reg_0b = 0x6b;
         if (apply)
             priv->int_freq = 3570000;
-//    }
-//    else if (12500 == bw) {
-//        *applied_bw = 12500;
-//        reg_0a = 0x10;
-//        reg_0b = 0x6b;
-//        if (apply)
-//            priv->int_freq = 1012500;
 	} else {
 		for(i=0; i < r82xx_bw_tablen-1; ++i) {
 			const int bwnext = IFi[i+1].bw * 1000 + ( IFi[i+1].sharpCorner == 2 ? 400 : 0 );
